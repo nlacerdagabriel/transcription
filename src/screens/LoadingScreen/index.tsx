@@ -8,17 +8,21 @@ import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { theme } from "../../theme";
 
-
 export const LoadingScreen = () => {
-  const { audioURL, changeTranscriptedText, changeNavStep } = useContext(AppContext);
+  const { audioURL, changeTranscriptedText, changeNavStep } =
+    useContext(AppContext);
 
   const navigate = useNavigate();
   const [data, setData] = useState<any>(null);
 
   const getTranscription = () => {
-    getTranscript(audioURL, function (x: string) {
-      setData(x);
-    });
+    try {
+      getTranscript(audioURL, function (x: string) {
+        setData(x);
+      });
+    } catch (error) {
+      navigate("/error");
+    }
   };
 
   useEffect(() => {
@@ -31,15 +35,18 @@ export const LoadingScreen = () => {
       navigate("/result");
     }
 
-    changeNavStep(2)
-
+    changeNavStep(2);
   }, [data]);
 
   return (
     <Container>
       <Loading>
-      <ClipLoader color={theme.colors.secondary} loading={true} size={120} aria-label="Loading Spinner" />
-
+        <ClipLoader
+          color={theme.colors.secondary}
+          loading={true}
+          size={120}
+          aria-label="Loading Spinner"
+        />
 
         <h1>Carregando sua transcrição</h1>
         <p>Aguarde enquanto sua transcrição está sendo processada.</p>

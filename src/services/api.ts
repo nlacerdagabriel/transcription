@@ -14,7 +14,10 @@ export const getTranscript = async (audioURL: string, callback: any) => {
   const response = await assembly.post("/transcript", {
     audio_url: audioURL,
     language_code: "pt",
+    disfluencies: false,
+    punctuate: true,
     format_text: false
+  
   })
 
   const checkCompletionInterval = setInterval(async () => {

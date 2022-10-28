@@ -9,9 +9,6 @@ import { AppContext } from "../../contexts/AppContext";
 import { Tooltip } from "../../components/Tooltip";
 import { useNavigate } from "react-router-dom";
 
-
-
-
 export const ResultScreen = () => {
   const { transcriptedText, changeNavStep } = useContext(AppContext);
 
@@ -25,22 +22,22 @@ export const ResultScreen = () => {
       }, 2000);
     }
 
-    changeNavStep(3)
+    changeNavStep(3);
   }, [copied]);
 
   const copyText = () => {
     setCopied(true);
 
-
-//    navigator.clipboard.writeText(okss);
+    //    navigator.clipboard.writeText(okss);
   };
 
   return (
     <Container>
       <h1>Aqui está o resultado da sua transcrição:</h1>
       <Result>
-        {transcriptedText.sentences !== "" &&
-          transcriptedText.sentences.map((it: any) => <p>{it.text}</p>)}
+        {transcriptedText !== "" && (
+          <p>{transcriptedText.replaceAll("né?", "").replaceAll("né", "")}</p>
+        )}
       </Result>
 
       <Actions>

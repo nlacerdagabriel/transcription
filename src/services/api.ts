@@ -16,8 +16,126 @@ export const getTranscript = async (audioURL: string, callback: any) => {
     language_code: "pt",
     disfluencies: false,
     punctuate: true,
-    format_text: false
-  
+    format_text: true,
+    custom_spelling: [
+      {
+        "from": ["meios"],
+        "to": "e-mails"
+      }, {
+        "from": ["meio"],
+        "to": "e-mail"
+      }, {
+        "from": ["1"],
+        "to": "um"
+      }, {
+        "from": ["2"],
+        "to": "dois"
+      },
+      {
+        "from": ["3"],
+        "to": "três"
+      },
+      {
+        "from": ["4"],
+        "to": "quatro"
+      },
+      {
+        "from": ["5"],
+        "to": "cinco"
+      },
+      {
+        "from": ["6"],
+        "to": "seis"
+      },
+      {
+        "from": ["7"],
+        "to": "sete"
+      },
+      {
+        "from": ["8"],
+        "to": "oito"
+      },
+      {
+        "from": ["9"],
+        "to": "nove"
+      },
+      {
+        "from": ["10"],
+        "to": "dez"
+      },
+      {
+        "from": ["norte"],
+        "to": "Norte"
+      },
+      {
+        "from": ["nordeste"],
+        "to": "Nordeste"
+      },
+      {
+        "from": ["centro, oeste"],
+        "to": "Centro-Oeste"
+      },
+      {
+        "from": ["sudeste"],
+        "to": "Sudeste"
+      },
+      {
+        "from": ["sul"],
+        "to": "Sul"
+      },
+      {
+        "from": ["quilovate"],
+        "to": "kW"
+      },
+      {
+        "from": ["mega. Vat"],
+        "to": "MW"
+      },
+      {
+        "from": ["vat"],
+        "to": "W"
+      },
+      {
+        "from": ["Giga"],
+        "to": "G"
+      },
+      {
+        "from": ["Gigabit"],
+        "to": "GB"
+      },
+      {
+        "from": ["Toneladas"],
+        "to": "t"
+      },
+      {
+        "from": ["Litros"],
+        "to": "l"
+      },
+      {
+        "from": ["reais"],
+        "to": "R$"
+      },
+      {
+        "from": ["Dólares"],
+        "to": "U$"
+      },
+      {
+        "from": ["Euros"],
+        "to": "€"
+      },
+      {
+        "from": ["Metros"],
+        "to": "m"
+      },
+      {
+        "from": ["Metros. Quadrados"],
+        "to": "m²"
+      },
+      {
+        "from": ["Metros. Cúbicos"],
+        "to": "m³"
+      },
+    ]
   })
 
   const checkCompletionInterval = setInterval(async () => {
@@ -30,13 +148,8 @@ export const getTranscript = async (audioURL: string, callback: any) => {
       clearInterval(checkCompletionInterval)
       console.log('deu bom')
       console.log(transcriptText)
-      assembly
-        .get(`/transcript/${transcript.data.id}/sentences`)
-        .then((res) => {
-          callback(res.data)
-          console.log(res.data.sentences)
-        })
-        .catch((err) => console.error(err));
+      callback(transcriptText)
+
     } else {
       console.log('ainda nao')
     }

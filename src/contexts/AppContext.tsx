@@ -11,6 +11,8 @@ interface IAppContextProps {
   changeTranscriptedText: (text: any) => void;
   activeNavStep: number;
   changeNavStep: (step: number) => void;
+  isModalAddActive: boolean;
+  changeModalAddState: (isActive: boolean) => void
 }
 
 export const AppContext = createContext<IAppContextProps>(
@@ -22,6 +24,7 @@ export const AppProvider: React.FC<IProps> = ({ children }) => {
 
   const [transcriptedText, setTranscriptedText] = useState({});
   const [activeNavStep, setActiveNavStep] = useState(1);
+  const [isModalAddActive, setIsModalAddActive] = useState(true)
 
   useEffect(() => {
     console.log(activeNavStep)
@@ -39,6 +42,10 @@ export const AppProvider: React.FC<IProps> = ({ children }) => {
     setActiveNavStep(step);
   }, []);
 
+  const changeModalAddState = useCallback((isActive: boolean) => {
+    setIsModalAddActive(isActive);
+  }, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -48,6 +55,8 @@ export const AppProvider: React.FC<IProps> = ({ children }) => {
         changeTranscriptedText,
         activeNavStep,
         changeNavStep,
+        changeModalAddState,
+        isModalAddActive
       }}
     >
       {children}

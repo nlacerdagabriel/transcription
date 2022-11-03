@@ -13,9 +13,12 @@ export const Container = styled.button`
   display: flex;
   align-items: center;
 
+  font-size: 1.25rem;
+
   cursor: pointer;
 
   color: ${theme.colors.tertiary};
+  font-weight: 500;
 
   svg{
     margin-left: 1rem;

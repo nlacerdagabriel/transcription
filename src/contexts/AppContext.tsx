@@ -24,7 +24,7 @@ export const AppProvider: React.FC<IProps> = ({ children }) => {
 
   const [transcriptedText, setTranscriptedText] = useState({});
   const [activeNavStep, setActiveNavStep] = useState(1);
-  const [isModalAddActive, setIsModalAddActive] = useState(true)
+  const [isModalAddActive, setIsModalAddActive] = useState(false)
 
   useEffect(() => {
     console.log(activeNavStep)

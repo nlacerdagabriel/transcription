@@ -7,6 +7,7 @@ import { getTranscript } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { theme } from "../../theme";
+import { Sidebar } from "../../components/Sidebar";
 
 export const LoadingScreen = () => {
   const { audioURL, changeTranscriptedText, changeNavStep } =
@@ -39,27 +40,31 @@ export const LoadingScreen = () => {
   }, [data]);
 
   return (
-    <Container>
-      <Loading>
-        <ClipLoader
-          color={theme.colors.secondary}
-          loading={true}
-          size={120}
-          aria-label="Loading Spinner"
-        />
+    <>
+      <Sidebar />
+      <Container>
+        <Loading>
+          <ClipLoader
+            color={theme.colors.secondary}
+            loading={true}
+            size={120}
+            aria-label="Loading Spinner"
+          />
 
-        <h1>Carregando sua transcrição</h1>
-        <p>Aguarde enquanto sua transcrição está sendo processada.</p>
-      </Loading>
+          <h1>Carregando sua transcrição</h1>
+          <p>Aguarde enquanto sua transcrição está sendo processada.</p>
+        </Loading>
 
-      <Info>
-        <img src={Exclamation} />
-        <h3>Não feche essa aba!</h3>
-        <p>
-          O processo costuma demorar 1/3 do tempo total do material. <br />
-          Ex : Um áudio de 1:00:00 levará aproximadamente 00:20:00.
-        </p>
-      </Info>
-    </Container>
+        <Info>
+          <img src={Exclamation} />
+          <h3>Não feche essa aba!</h3>
+          <p>
+            O processo costuma demorar 1/3 do tempo total do material. <br />
+            Ex : Um áudio de 1:00:00 levará aproximadamente 00:20:00.
+          </p>
+        </Info>
+      </Container>
+      \
+    </>
   );
 };

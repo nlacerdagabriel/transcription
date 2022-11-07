@@ -43,17 +43,4 @@ export const GlobalStyle = createGlobalStyle`
         background-color: rgba(0,0,0,0.5) !important;
     }
 
-    .ReactModal__Content{
-        transition: 1000ms;
-
-    }
-
-    .ReactModal__Content--after-open{
-        bottom: 50vh !important;
-        transform: initial !important;
-    }
-
-    .ReactModal__Content--before-open{
-        bottom: 0 !important;
-    }
 `

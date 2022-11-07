@@ -5,7 +5,7 @@ export const Container = styled.section`
   min-height: 100vh;
   max-width: 354px;
 
-  border-radius: 1.5rem;
+  border-radius: 0 1.5rem 1.5rem 0;
   box-shadow: 0px 2px 100px rgba(0, 0, 0, 0.1);
 
   position: relative;
@@ -19,16 +19,20 @@ export const Container = styled.section`
   justify-content: space-between;
   align-items: flex-start;
 
-  & > div> h1{
+ .logo{
+    cursor: pointer;
+  }
+
+ .logo > h1{
     color: ${theme.colors.primary};
     font-weight: 700;
   }
 
-  & > div > h1 span{
+ .logo > h1 span{
     color: ${theme.colors.secondary};
   }
 
-  & > div > p{
+ .logo > p{
     font-weight: 400;
     color: ${theme.colors.tertiary};
     line-height: 1rem;
@@ -36,6 +40,11 @@ export const Container = styled.section`
 
   & > img{
     max-height: 2rem;
+  }
+
+  .nav-button{
+    all: unset;
+    cursor: pointer;
   }
 `
 
@@ -45,7 +54,7 @@ export const NavigationContainer = styled.nav`
 
 export const About = styled.div`
   padding: 1.5rem;
-  margin-top: 4.75rem;
+  margin: 4.75rem 0;
 
   box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.7),
   inset 2px 2px 4px rgba(189, 200, 223, 0.7);  border-radius: 1.5rem;

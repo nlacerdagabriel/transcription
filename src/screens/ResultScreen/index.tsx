@@ -8,6 +8,7 @@ import { SecondaryButton } from "../../components/SecondaryButton";
 import { AppContext } from "../../contexts/AppContext";
 import { Tooltip } from "../../components/Tooltip";
 import { useNavigate } from "react-router-dom";
+import { Sidebar } from "../../components/Sidebar";
 
 export const ResultScreen = () => {
   const { transcriptedText, changeNavStep } = useContext(AppContext);
@@ -32,35 +33,39 @@ export const ResultScreen = () => {
   };
 
   return (
-    <Container>
-      <h1>Aqui está o resultado da sua transcrição:</h1>
-      <Result>
-        {transcriptedText !== "" && (
-          <p>{transcriptedText.replaceAll("né?", "").replaceAll("né", "")}</p>
-        )}
-      </Result>
+    <>
+      <Sidebar />
 
-      <Actions>
-        <SecondaryButton
-          onClick={() => {
-            navigate("/");
-          }}
-          icon={<IoIosReturnLeft size={25} color={theme.colors.tertiary} />}
-        >
-          Nova transcrição
-        </SecondaryButton>
+      <Container>
+        <h1>Aqui está o resultado da sua transcrição:</h1>
+        <Result>
+          {transcriptedText !== "" && (
+            <p>{transcriptedText.replaceAll("né?", "").replaceAll("né", "")}</p>
+          )}
+        </Result>
 
-        <TooltipArea>
-          <Tooltip isActive={copied} label="Copiado!" />
-
+        <Actions>
           <SecondaryButton
-            onClick={copyText}
-            icon={<FiCopy size={25} color={theme.colors.tertiary} />}
+            onClick={() => {
+              navigate("/");
+            }}
+            icon={<IoIosReturnLeft size={25} color={theme.colors.tertiary} />}
           >
-            Copiar
+            Nova transcrição
           </SecondaryButton>
-        </TooltipArea>
-      </Actions>
-    </Container>
+
+          <TooltipArea>
+            <Tooltip isActive={copied} label="Copiado!" />
+
+            <SecondaryButton
+              onClick={copyText}
+              icon={<FiCopy size={25} color={theme.colors.tertiary} />}
+            >
+              Copiar
+            </SecondaryButton>
+          </TooltipArea>
+        </Actions>
+      </Container>
+    </>
   );
 };

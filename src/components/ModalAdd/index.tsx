@@ -1,7 +1,13 @@
 import React, { useContext } from "react";
 import Modal from "react-modal";
 import { AppContext } from "../../contexts/AppContext";
-import { ButtonArea, FromToContainer, ModalContent, Table, Title } from "./styles";
+import {
+  ButtonArea,
+  FromToContainer,
+  ModalContent,
+  Table,
+  Title,
+} from "./styles";
 
 import { IoIosArrowBack } from "react-icons/io";
 import { FaSave } from "react-icons/fa";
@@ -17,16 +23,23 @@ export const ModalAdd = () => {
     changeModalAddState(false);
   };
 
+
   const customStyles = {
     content: {
-
-      borderRadius: '1.5rem 1.5rem 0 0',
-      border: 'none'
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      padding: 0,
+      borderRadius: "1rem 1rem 0 0 ",
+      width: '45vw'
     },
   };
 
   return (
-     <Modal
+    <Modal
       isOpen={isModalAddActive}
       onRequestClose={closeModalAdd}
       style={customStyles}
@@ -34,7 +47,8 @@ export const ModalAdd = () => {
     >
       <ModalContent>
         <h3>
-          <IoIosArrowBack /> Adicionar nova palavra
+          <button onClick={closeModalAdd} className="arrow-back">
+          <IoIosArrowBack /></button> Adicionar nova palavra
         </h3>
 
         <FromToContainer>
@@ -46,9 +60,9 @@ export const ModalAdd = () => {
 
           <Table>
             <div>
-              <p>Ntegra</p>
+              <input type="text" />
               <img src={ArrowRight} />
-              <p>Integra</p>
+              <input type="text" />
             </div>
           </Table>
         </FromToContainer>

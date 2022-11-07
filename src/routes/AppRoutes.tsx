@@ -11,7 +11,7 @@ export const AppRoutes = () => {
       <Router>
         <Routes>
           <Route path="/" element={<HomeScreen />}></Route>
-          <Route path="/inteligence" element={<InteligenceScreen />}></Route>
+          <Route path="/intelligence" element={<InteligenceScreen />}></Route>
           <Route path="/result" element={<ResultScreen />}></Route>
           <Route path="/error" element={<ErrorScreen />}></Route>
           <Route path="/loading" element={<LoadingScreen />}></Route>

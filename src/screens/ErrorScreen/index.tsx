@@ -5,22 +5,27 @@ import { SecondaryButton } from "../../components/SecondaryButton";
 import { AiOutlineRedo } from "react-icons/ai";
 import { ErrorContainer } from "./styles";
 import { useNavigate } from "react-router-dom";
+import { Sidebar } from "../../components/Sidebar";
 
 export const ErrorScreen = () => {
   const navigate = useNavigate();
 
   return (
-    <ErrorContainer>
-      <img src={SadEmoji} />
+    <>
+      <Sidebar />
 
-      <h1>
-        Ops! <br />
-        Parece que deu algo de errado com seu arquivo
-      </h1>
+      <ErrorContainer>
+        <img src={SadEmoji} />
 
-      <SecondaryButton onClick={() => navigate("/")} icon={AiOutlineRedo}>
-        Tente novamente
-      </SecondaryButton>
-    </ErrorContainer>
+        <h1>
+          Ops! <br />
+          Parece que deu algo de errado com seu arquivo
+        </h1>
+
+        <SecondaryButton onClick={() => navigate("/")} icon={AiOutlineRedo}>
+          Tente novamente
+        </SecondaryButton>
+      </ErrorContainer>
+    </>
   );
 };

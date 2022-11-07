@@ -7,6 +7,7 @@ import { ClipLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../contexts/AppContext";
 import { toast } from 'react-toastify';
+import { Sidebar } from "../../components/Sidebar";
 
 
 export const HomeScreen = () => {
@@ -40,6 +41,9 @@ export const HomeScreen = () => {
   };
 
   return (
+   <>
+    <Sidebar/>
+
     <Container>
       <InfoContainer>
         <h1>Qual arquivo você quer transcrever?</h1>
@@ -71,5 +75,6 @@ export const HomeScreen = () => {
         </PrimaryButton>
       </TranscriptionArea>
     </Container>
+   </>
   );
 };

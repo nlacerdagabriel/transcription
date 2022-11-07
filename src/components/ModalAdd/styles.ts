@@ -19,6 +19,14 @@ export const ModalContent = styled.div`
       color: ${theme.colors.secondary};
     }
   }
+
+  .arrow-back{
+    all: unset;
+
+    cursor: pointer;
+    position: relative;
+    bottom: -0.3rem;
+  }
 `
 
 
@@ -55,9 +63,12 @@ export const Table = styled.div`
     justify-content: space-between;
     margin-bottom: 1rem;
 
-    p{
+    input{
       width: 328px;
       height: 56px;
+
+      outline: none;
+      border: none;
 
       display: flex;
       align-items: center;
@@ -70,6 +81,10 @@ export const Table = styled.div`
       background: #E9EAF0;
       box-shadow: inset -8px -8px 16px rgba(255, 255, 255, 0.7), inset 8px 8px 16px rgba(189, 200, 223, 0.7);
       border-radius: 40px;
+
+      &::placeholder{
+        color: ${theme.colors.tertiary};
+      }
     }
   }
 `

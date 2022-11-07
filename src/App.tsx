@@ -14,7 +14,6 @@ function App() {
       <ToastContainer />
       <Container>
         <ModalAdd/>
-        <Sidebar />
         <AppRoutes />
       </Container>
     </AppProvider>

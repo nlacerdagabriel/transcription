@@ -1,25 +1,30 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavigationItem } from "../NavigationItem";
 import { About, Container, NavigationContainer } from "./styles";
 import LogoBlendon from "../../assets/logo-blendon.svg";
 
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { HiPencil } from "react-icons/hi";
+import { HiBookOpen } from "react-icons/hi";
 import { FaLink } from "react-icons/fa";
 
 import { AppContext } from "../../contexts/AppContext";
 import { theme } from "../../theme";
+import { useNavigate } from "react-router-dom";
 
 export const Sidebar = () => {
-  const {activeNavStep, changeNavStep} = useContext(AppContext)
+  const { activeNavStep, changeNavStep } = useContext(AppContext);
+  const navigate = useNavigate();
 
   return (
     <Container>
       <div>
-        <h1>
-          tran<span>&lt;script&gt;</span>ON
-        </h1>
-        <p>versão beta</p>
+        <div onClick={() => navigate("/")} className="logo">
+          <h1>
+            tran<span>&lt;script&gt;</span>ON
+          </h1>
+          <p>versão beta</p>
+        </div>
 
         <NavigationContainer>
           <NavigationItem
@@ -27,7 +32,9 @@ export const Sidebar = () => {
               <FaLink
                 size={30}
                 color={
-                  activeNavStep == 1 ? theme.colors.secondary : theme.colors.tertiary
+                  activeNavStep == 1
+                    ? theme.colors.secondary
+                    : theme.colors.tertiary
                 }
               />
             }
@@ -39,7 +46,9 @@ export const Sidebar = () => {
               <AiOutlineLoading3Quarters
                 size={30}
                 color={
-                  activeNavStep == 2 ? theme.colors.secondary : theme.colors.tertiary
+                  activeNavStep == 2
+                    ? theme.colors.secondary
+                    : theme.colors.tertiary
                 }
               />
             }
@@ -51,7 +60,9 @@ export const Sidebar = () => {
               <HiPencil
                 size={30}
                 color={
-                  activeNavStep == 3 ? theme.colors.secondary : theme.colors.tertiary
+                  activeNavStep == 3
+                    ? theme.colors.secondary
+                    : theme.colors.tertiary
                 }
               />
             }
@@ -68,6 +79,23 @@ export const Sidebar = () => {
             beta e não deve ser divulgado externamente.
           </p>
         </About>
+
+        <button onClick={() => navigate("intelligence")} className="nav-button">
+          <NavigationItem
+            icon={
+              <HiBookOpen
+                size={30}
+                color={
+                  activeNavStep == 4
+                    ? theme.colors.secondary
+                    : theme.colors.tertiary
+                }
+              />
+            }
+            isActive={activeNavStep == 4}
+            label="Inteligência Ortográfica"
+          />
+        </button>
       </div>
 
       <img src={LogoBlendon} />

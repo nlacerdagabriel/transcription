@@ -9,7 +9,7 @@ import NavIndicator from '../../assets/nav-indicator.svg'
 interface IProps {
   label: string;
   isActive: boolean;
-  icon: any
+  icon: any;
 }
 
 export const NavigationItem = ({ label, isActive, icon }: IProps) => {

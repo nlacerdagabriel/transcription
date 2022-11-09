@@ -11,19 +11,42 @@ import {
 
 import TipImg from "../../assets/tip.svg";
 import { GrAddCircle } from "react-icons/gr";
+import { FaTrash } from "react-icons/fa";
 import ArrowRight from "../../assets/arrow-right.svg";
 
 import { SecondaryButton } from "../../components/SecondaryButton";
 import { theme } from "../../theme";
 import { AppContext } from "../../contexts/AppContext";
 import { Sidebar } from "../../components/Sidebar";
+import { IWordSpelling } from "../../interfaces/wordInterfaces";
+import { deleteWord } from "../../services/backendService";
+import { toast } from "react-toastify";
 
 export const InteligenceScreen = () => {
-  const { changeModalAddState, changeNavStep } = useContext(AppContext);
+  const {
+    changeModalAddState,
+    changeNavStep,
+    wordList,
+    updateWordList,
+    changeModalUpdateState,
+    updateWordId,
+  } = useContext(AppContext);
 
   useEffect(() => {
     changeNavStep(4);
   }, []);
+
+  const handleDeleteWord = async (id: number) => {
+    await deleteWord(id);
+    updateWordList();
+
+    toast.success('Palavra removida com sucesso!')
+  };
+
+  const handleUpdateWord = async (id: number) => {
+    changeModalUpdateState(true);
+    updateWordId(id);
+  };
 
   return (
     <>
@@ -54,26 +77,34 @@ export const InteligenceScreen = () => {
           </div>
         </Tip>
 
-        <FromToContainer>
-          <Title>
-            <h3>De</h3>
+        {wordList.length > 0 && (
+          <FromToContainer>
+            <Title>
+              <h3>De</h3>
 
-            <h3>Para</h3>
-          </Title>
+              <h3>Para</h3>
+            </Title>
 
-          <Table>
-            <div>
-              <p>Ntegra</p>
-              <img src={ArrowRight} />
-              <p>Integra</p>
-            </div>
-            <div>
-              <p>Ntegra</p>
-              <img src={ArrowRight} />
-              <p>Integra</p>
-            </div>
-          </Table>
-        </FromToContainer>
+            <Table>
+              {wordList.map((it: IWordSpelling) => (
+                <>
+                  <div key={it.id}>
+                    <div onClick={() => handleUpdateWord(it.id!)}>
+                      <p>{it.from}</p>
+                      <img src={ArrowRight} />
+                      <p>{it.to}</p>
+                    </div>
+                    <FaTrash
+                      onClick={() => handleDeleteWord(it.id!)}
+                      className="delete"
+                      color="red"
+                    />
+                  </div>
+                </>
+              ))}
+            </Table>
+          </FromToContainer>
+        )}
 
         <SecondaryButton
           icon={<GrAddCircle color={theme.colors.tertiary} />}

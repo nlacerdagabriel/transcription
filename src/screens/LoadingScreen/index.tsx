@@ -10,15 +10,21 @@ import { theme } from "../../theme";
 import { Sidebar } from "../../components/Sidebar";
 
 export const LoadingScreen = () => {
-  const { audioURL, changeTranscriptedText, changeNavStep } =
-    useContext(AppContext);
+  const {
+    audioURL,
+    changeTranscriptedText,
+    changeNavStep,
+    wordList,
+  } = useContext(AppContext);
 
   const navigate = useNavigate();
   const [data, setData] = useState<any>(null);
 
   const getTranscription = () => {
+
+
     try {
-      getTranscript(audioURL, function (x: string) {
+      getTranscript(wordList, audioURL, function (x: string) {
         setData(x);
       });
     } catch (error) {

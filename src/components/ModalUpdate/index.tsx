@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Modal from "react-modal";
 import { AppContext } from "../../contexts/AppContext";
 import {
@@ -15,34 +15,45 @@ import { FaSave } from "react-icons/fa";
 import ArrowRight from "../../assets/arrow-right.svg";
 import { SecondaryButton } from "../SecondaryButton";
 import { theme } from "../../theme";
-import { createWord, getAllWords } from "../../services/backendService";
+import { createWord, getAllWords, getOneWord, updateWord } from "../../services/backendService";
 import { toast } from "react-toastify";
+import { IWordSpelling } from "../../interfaces/wordInterfaces";
 
-export const ModalAdd = () => {
-  const { isModalAddActive, changeModalAddState, updateWordList, wordList} = useContext(AppContext);
+export const ModalUpdate = () => {
+  const { isModalUpdateActive, changeModalUpdateState, updateWordList, wordId } = useContext(AppContext);
   const [from, setFrom] = useState("")
   const [to, setTo] = useState("")
 
-  const closeModalAdd = () => {
-    changeModalAddState(false);
+  useEffect(() => {
+    const getData = async() => {
+      const response = await getOneWord(wordId)
+
+      setFrom(response.data.from)
+      setTo(response.data.to)
+    }
+
+    getData()
+  }, [wordId])
+
+  const closeModalUpdate = () => {
+    changeModalUpdateState(false);
   };
 
   const handleSaveWord = async() => {
     try {
-      await createWord(from, to)
-      toast.success('Palavra criada com sucesso!')
-
-      
+      await updateWord(wordId, from, to)
+      toast.success('Palavra editada com sucesso!')
       setFrom("")
       setTo("")
 
       updateWordList();
 
+      closeModalUpdate()
+
     } catch (error) {
       toast.error('Algo deu errado.')
     }
   }
-
 
   const customStyles = {
     content: {
@@ -59,15 +70,15 @@ export const ModalAdd = () => {
 
   return (
     <Modal
-      isOpen={isModalAddActive}
-      onRequestClose={closeModalAdd}
+      isOpen={isModalUpdateActive}
+      onRequestClose={closeModalUpdate}
       style={customStyles}
       contentLabel="Example Modal"
     >
       <ModalContent>
         <h3>
-          <button onClick={closeModalAdd} className="arrow-back">
-          <IoIosArrowBack /></button> Adicionar nova palavra
+          <button onClick={closeModalUpdate} className="arrow-back">
+          <IoIosArrowBack /></button> Editar palavra
         </h3>
 
         <FromToContainer>

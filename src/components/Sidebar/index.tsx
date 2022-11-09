@@ -80,7 +80,7 @@ export const Sidebar = () => {
           </p>
         </About>
 
-        <button onClick={() => navigate("intelligence")} className="nav-button">
+        <button onClick={() => navigate("/intelligence")} className="nav-button">
           <NavigationItem
             icon={
               <HiBookOpen

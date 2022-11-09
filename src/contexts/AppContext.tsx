@@ -1,4 +1,6 @@
 import React, { createContext, useCallback, useEffect, useState } from "react";
+import { IWordSpelling } from "../interfaces/wordInterfaces";
+import { getAllWords } from "../services/backendService";
 
 interface IProps {
   children: React.ReactNode;
@@ -12,7 +14,13 @@ interface IAppContextProps {
   activeNavStep: number;
   changeNavStep: (step: number) => void;
   isModalAddActive: boolean;
-  changeModalAddState: (isActive: boolean) => void
+  changeModalAddState: (isActive: boolean) => void;
+  isModalUpdateActive: boolean;
+  changeModalUpdateState: (isActive: boolean) => void;
+  wordList: IWordSpelling[];
+  updateWordList: () => void;
+  updateWordId: (id: number) => void;
+  wordId: number;
 }
 
 export const AppContext = createContext<IAppContextProps>(
@@ -24,11 +32,14 @@ export const AppProvider: React.FC<IProps> = ({ children }) => {
 
   const [transcriptedText, setTranscriptedText] = useState({});
   const [activeNavStep, setActiveNavStep] = useState(1);
-  const [isModalAddActive, setIsModalAddActive] = useState(false)
+  const [isModalAddActive, setIsModalAddActive] = useState(false);
+  const [isModalUpdateActive, setIsModalUpdateActive] = useState(false);
+  const [wordList, setWordList] = useState<IWordSpelling[]>([]);
+  const [wordId, setWordId] = useState(0)
 
   useEffect(() => {
-    console.log(activeNavStep)
-  }, [])
+    updateWordList();
+  }, []);
 
   const changeAudioURL = useCallback((url: string) => {
     setAudioURL(url);
@@ -46,6 +57,20 @@ export const AppProvider: React.FC<IProps> = ({ children }) => {
     setIsModalAddActive(isActive);
   }, []);
 
+  const changeModalUpdateState = useCallback((isActive: boolean) => {
+    setIsModalUpdateActive(isActive);
+  }, []);
+
+  const updateWordList = useCallback(async () => {
+    const response = await getAllWords();
+    setWordList(response.data);
+  }, []);
+
+  const updateWordId = useCallback((id: number) => {
+    setWordId(id)
+  }, [])
+
+
   return (
     <AppContext.Provider
       value={{
@@ -56,7 +81,13 @@ export const AppProvider: React.FC<IProps> = ({ children }) => {
         activeNavStep,
         changeNavStep,
         changeModalAddState,
-        isModalAddActive
+        isModalAddActive,
+        changeModalUpdateState,
+        isModalUpdateActive,
+        updateWordList,
+        wordList,
+        updateWordId,
+        wordId,
       }}
     >
       {children}

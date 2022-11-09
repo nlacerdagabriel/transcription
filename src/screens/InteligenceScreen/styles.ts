@@ -89,25 +89,54 @@ export const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: 0 9rem;
   margin-bottom: 2.5rem;
 
   h3{
     font-size: 1.5rem;
     color: ${theme.colors.secondary};
   }
+
+  & > h3:first-child{
+    position: relative;
+    right: -10rem;
+  }
+
+  & > h3:last-child{
+    position: relative;
+    left: -13rem;
+  }
 `
 
 export const Table = styled.div`
   width: 100%;
+  max-height: 25vh;
+  overflow-y: scroll;
+
+  & > div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-right: 1rem;
+
+    .delete{
+      opacity: 0;
+      cursor: pointer;
+      transition: 0.300s;
+    }
+
+    &:hover > .delete{
+      opacity: 1;
+      color: ${theme.colors.tertiary};
+    }
+  }
   
-  div{
+  & > div > div{
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1rem;
+    cursor: pointer;
+    margin    : 0 1rem ;
 
     p{
       width: 328px;
@@ -125,5 +154,11 @@ export const Table = styled.div`
       box-shadow: inset -8px -8px 16px rgba(255, 255, 255, 0.7), inset 8px 8px 16px rgba(189, 200, 223, 0.7);
       border-radius: 40px;
     }
+
+    
   }
+
+ 
+
+
 `

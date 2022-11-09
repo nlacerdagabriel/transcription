@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "pm2 start src/App.tsx",
+    "dev": "pm2 start src/main.tsx",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },

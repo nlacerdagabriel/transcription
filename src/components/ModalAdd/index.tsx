@@ -39,6 +39,12 @@ export const ModalAdd = () => {
       updateWordList();
 
     } catch (error) {
+
+      if(error.response.data){
+        toast.error(error.response.data)
+        return
+      }
+
       toast.error('Algo deu errado.')
     }
   }

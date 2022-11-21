@@ -3,7 +3,7 @@ import { Container } from "./styles";
 
 interface IProps {
   children: React.ReactNode;
-  icon: any;
+  icon?: any;
   onClick: () => void;
 }
 

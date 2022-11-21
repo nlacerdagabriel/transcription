@@ -38,7 +38,7 @@ export const ModalAdd = () => {
 
       updateWordList();
 
-    } catch (error) {
+    } catch (error: any) {
 
       if(error.response.data){
         toast.error(error.response.data)

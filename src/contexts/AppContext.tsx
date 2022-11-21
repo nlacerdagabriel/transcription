@@ -21,6 +21,9 @@ interface IAppContextProps {
   updateWordList: () => void;
   updateWordId: (id: number) => void;
   wordId: number;
+  isModalDeleteActive: boolean;
+  changeModalDeleteState: (isActive: boolean) => void;
+
 }
 
 export const AppContext = createContext<IAppContextProps>(
@@ -34,6 +37,7 @@ export const AppProvider: React.FC<IProps> = ({ children }) => {
   const [activeNavStep, setActiveNavStep] = useState(1);
   const [isModalAddActive, setIsModalAddActive] = useState(false);
   const [isModalUpdateActive, setIsModalUpdateActive] = useState(false);
+  const [isModalDeleteActive, setIsModalDeleteActive] = useState(false);
   const [wordList, setWordList] = useState<IWordSpelling[]>([]);
   const [wordId, setWordId] = useState(0)
 
@@ -55,6 +59,10 @@ export const AppProvider: React.FC<IProps> = ({ children }) => {
 
   const changeModalAddState = useCallback((isActive: boolean) => {
     setIsModalAddActive(isActive);
+  }, []);
+
+  const changeModalDeleteState = useCallback((isActive: boolean) => {
+    setIsModalDeleteActive(isActive);
   }, []);
 
   const changeModalUpdateState = useCallback((isActive: boolean) => {
@@ -88,6 +96,8 @@ export const AppProvider: React.FC<IProps> = ({ children }) => {
         wordList,
         updateWordId,
         wordId,
+        changeModalDeleteState,
+        isModalDeleteActive
       }}
     >
       {children}

@@ -30,6 +30,7 @@ export const InteligenceScreen = () => {
     updateWordList,
     changeModalUpdateState,
     updateWordId,
+    changeModalDeleteState,
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -37,10 +38,8 @@ export const InteligenceScreen = () => {
   }, []);
 
   const handleDeleteWord = async (id: number) => {
-    await deleteWord(id);
-    updateWordList();
-
-    toast.success('Palavra removida com sucesso!')
+    updateWordId(id);
+    changeModalDeleteState(true);
   };
 
   const handleUpdateWord = async (id: number) => {
@@ -72,7 +71,7 @@ export const InteligenceScreen = () => {
             <h2>Dica</h2>
             <p>
               Quando houver variações da mesma palavra com grafia diferente,
-              deve-se separar pelo caractere <span>;</span>
+              deve-se adicionar uma nova linha.
             </p>
           </div>
         </Tip>

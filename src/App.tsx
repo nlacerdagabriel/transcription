@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ModalAdd } from "./components/ModalAdd";
 import { ModalUpdate } from "./components/ModalUpdate";
+import { ModalDelete } from "./components/ModalDelete";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Container>
         <ModalAdd/>
         <ModalUpdate/>
+        <ModalDelete/>
         <AppRoutes />
       </Container>
     </AppProvider>

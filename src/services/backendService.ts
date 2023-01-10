@@ -2,7 +2,7 @@ import axios from "axios"
 import { IWordSpelling } from "../interfaces/wordInterfaces"
 
 const api = axios.create({
-  baseURL: "http://backend-transcription.s3-website-us-east-1.amazonaws.com/custom-word",
+  baseURL: "https://backend-transcripton.herokuapp.com/custom-word",
 })
 
 export const getAllWords = async () => {

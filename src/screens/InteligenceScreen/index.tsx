@@ -91,7 +91,7 @@ export const InteligenceScreen = () => {
                     <div onClick={() => handleUpdateWord(it.id!)}>
                       <p>{it.from}</p>
                       <img src={ArrowRight} />
-                      <p>{it.to}</p>
+                      <p>{it.to.replaceAll("@", " ")}</p>
                     </div>
                     <FaTrash
                       onClick={() => handleDeleteWord(it.id!)}

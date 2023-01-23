@@ -40,7 +40,7 @@ export const ResultScreen = () => {
         <h1>Aqui está o resultado da sua transcrição:</h1>
         <Result>
           {transcriptedText !== "" && (
-            <p>{transcriptedText.replaceAll("né?", "").replaceAll("né", "")}</p>
+            <p>{transcriptedText.replaceAll("@", " ")}</p>
           )}
         </Result>
 
